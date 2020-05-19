@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1533956241051526641}
   - component: {fileID: 1533956241051526654}
   - component: {fileID: 1533956241051526655}
+  - component: {fileID: 4602873743418787869}
   m_Layer: 0
   m_Name: pickup
   m_TagString: Untagged
@@ -98,3 +99,19 @@ CircleCollider2D:
   m_Offset: {x: 0.012279049, y: 0}
   serializedVersion: 2
   m_Radius: 0.2094887
+--- !u!114 &4602873743418787869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533956241051526652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c571cd798aaf5fa4185f467b83bba372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 0
+  Attack: 0
+  Defense: 0
+  Intellgence: 0

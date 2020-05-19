@@ -10,7 +10,7 @@ public class Toy : MonoBehaviour
 {
     #region Fields
     [SerializeField]
-    private int HP;
+    public int HP;
 
     [SerializeField]
     private int Attack;
@@ -21,9 +21,13 @@ public class Toy : MonoBehaviour
     [SerializeField]
     private int Intellgence;
 
+    public int battlepower;
+
+
+    //access battlepower through this get
     public int BattlePower
     {
-        get { return (HP + Attack + Defense + Intellgence); }
+        get { return battlepower; }
     }
 
     #endregion
@@ -38,6 +42,9 @@ public class Toy : MonoBehaviour
         Attack = UnityEngine.Random.Range(1, 10);
         Defense = UnityEngine.Random.Range(1, 10);
         Intellgence = UnityEngine.Random.Range(1, 10);
+
+        battlepower = (HP + Attack + Defense + Intellgence);
+
     }
 
     // Update is called once per frame
@@ -55,7 +62,7 @@ public class Toy : MonoBehaviour
         }
 
         // check for same object type
-       
+
         if (OtherToy != null)
         {
             // return relative order

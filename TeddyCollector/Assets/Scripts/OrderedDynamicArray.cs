@@ -30,12 +30,10 @@ namespace OrderedArray
             //find location at which to add the item
             int addLocation = 0;
 
-            Toy ToyHolder = items[addLocation] as Toy;
-            while ((addLocation < count) && (ToyHolder.CompareTheseTwo(ToyHolder) < 0))
-            //while ((addLocation < count))
+            
+            while ((addLocation < count))
             {
-               
-                   addLocation++;
+                 addLocation++;   
             }
 
             //shift array, add new item and increment count

@@ -74,6 +74,9 @@ public class PickupSpawner : MonoBehaviour
             count++;
         }
 
+        Debug.Log(ToySpawnedArray);
+        Debug.Log("BattlePower of Toy is" + ToySpawnedArray.items[0].GetComponent<Toy>().HP);
+
     }
 
     void SpawnPickup()
@@ -102,8 +105,8 @@ public class PickupSpawner : MonoBehaviour
         {
             GameObject pickup = Instantiate<GameObject>(prefabPickup,
                                     location, Quaternion.identity);
+            
             ToySpawnedArray.Add(pickup);
-
 
         }
     }
@@ -115,6 +118,8 @@ public class PickupSpawner : MonoBehaviour
         max.x = location.x + pickupColliderRadius;
         max.y = location.y + pickupColliderRadius;
     }
+
+
 
 
 }

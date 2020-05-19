@@ -12,8 +12,8 @@ namespace Array
     public abstract class DynamicArray<T>
     {
         const int ExpandMultiplyFactor = 2;
-        protected T[] items;
-        protected int count;
+        public T[] items;
+        public int count;
 
         protected DynamicArray()
         {
