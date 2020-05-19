@@ -1,9 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using OrderedArray;
 
 public class PickupSpawner : MonoBehaviour
 {
+
+    public OrderedDynamicArray<GameObject> ToySpawnedArray;
+    //Public OrderedDynamicArray<GameObject> testarray = new OrderedDynamicArray<GameObject>();
     // needed for spawning
     [SerializeField]
     GameObject prefabPickup;
@@ -30,6 +38,7 @@ public class PickupSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ToySpawnedArray = new OrderedDynamicArray<GameObject>();
         float widthRatio = (float)Screen.width / BaseWidth;
         float heightRatio = (float)Screen.height / BaseHeight;
         float resolutionRatio = (widthRatio + heightRatio) / 2;
@@ -62,7 +71,6 @@ public class PickupSpawner : MonoBehaviour
         while (count < 10)
         {
             SpawnPickup();
-
             count++;
         }
 
@@ -70,9 +78,10 @@ public class PickupSpawner : MonoBehaviour
 
     void SpawnPickup()
     {
+       
         //generate random location and calculate pickup collision rectangle
-        location.x = Random.Range(minSpawnX, maxSpawnX);
-        location.y = Random.Range(minSpawnY, maxSpawnY);
+        location.x = UnityEngine.Random.Range(minSpawnX, maxSpawnX);
+        location.y = UnityEngine.Random.Range(minSpawnY, maxSpawnY);
         SetMinAndMax(location);
 
         int spawnTries = 1;
@@ -80,8 +89,8 @@ public class PickupSpawner : MonoBehaviour
             spawnTries < MaxSpawnTries)
         {
             // change location and calculate new rectangle points
-            location.x = Random.Range(minSpawnX, maxSpawnX);
-            location.y = Random.Range(minSpawnY, maxSpawnY);
+            location.x = UnityEngine.Random.Range(minSpawnX, maxSpawnX);
+            location.y = UnityEngine.Random.Range(minSpawnY, maxSpawnY);
             SetMinAndMax(location);
 
             spawnTries++;
@@ -93,7 +102,9 @@ public class PickupSpawner : MonoBehaviour
         {
             GameObject pickup = Instantiate<GameObject>(prefabPickup,
                                     location, Quaternion.identity);
-        
+            ToySpawnedArray.Add(pickup);
+
+
         }
     }
 
