@@ -10,7 +10,7 @@ using Array;
 
 namespace OrderedArray
 {
-    public class OrderedDynamicArray<T> : DynamicArray<T> //where T: IComparable
+    public class OrderedDynamicArray<T> : DynamicArray<T> where T: IComparable
     {
 
         public OrderedDynamicArray() : base()
@@ -30,8 +30,9 @@ namespace OrderedArray
             //find location at which to add the item
             int addLocation = 0;
 
-            
-            while ((addLocation < count))
+
+            while ((addLocation < count) &&
+                (items[addLocation].CompareTo(item) < 0))
             {
                  addLocation++;   
             }

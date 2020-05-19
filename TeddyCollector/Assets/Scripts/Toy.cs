@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-    public class Toy : MonoBehaviour
+    public class Toy : MonoBehaviour, IComparable 
 {
         #region Fields
         [SerializeField]
@@ -53,39 +53,40 @@ using System.Threading.Tasks;
 
         }
 
-        public int CompareTheseTwo(Toy OtherToy)
+    public int CompareTo(object obj)
+    {
+        // this instance is greater than a null object
+        if (obj == null)
         {
-            // this instance is greater than a null object
-            if (OtherToy == null)
+            return 1;
+        }
+
+        // check for same object type
+        Toy othertoy = obj as Toy;
+
+        if (obj != null)
+        {
+            // return relative order
+            int thisBattlePower = BattlePower;
+            int otherBattlePower = othertoy.BattlePower;
+            if (thisBattlePower < otherBattlePower)
             {
-                return 1;
+                return -1;
             }
-
-            // check for same object type
-
-            if (OtherToy != null)
+            else if (thisBattlePower == otherBattlePower)
             {
-                // return relative order
-                int thisBattlePower = BattlePower;
-                int otherBattlePower = OtherToy.BattlePower;
-                if (thisBattlePower < otherBattlePower)
-                {
-                    return -1;
-                }
-                else if (thisBattlePower == otherBattlePower)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return 1;
-                }
+                return 0;
             }
             else
             {
-                throw new ArgumentException("Object is not a Toy");
+                return 1;
             }
         }
+        else
+        {
+            throw new ArgumentException("Object is not a Toy");
+        }
+    }
 
         /// <summary>
         /// Converts the rectangle to a string

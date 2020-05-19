@@ -10,7 +10,7 @@ using OrderedArray;
 public class PickupSpawner : MonoBehaviour
 {
 
-    public OrderedDynamicArray<GameObject> ToySpawnedArray;
+    public OrderedDynamicArray<Toy> ToySpawnedArray;
     //Public OrderedDynamicArray<GameObject> testarray = new OrderedDynamicArray<GameObject>();
     // needed for spawning
     [SerializeField]
@@ -38,7 +38,7 @@ public class PickupSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ToySpawnedArray = new OrderedDynamicArray<GameObject>();
+        ToySpawnedArray = new OrderedDynamicArray<Toy>();
         float widthRatio = (float)Screen.width / BaseWidth;
         float heightRatio = (float)Screen.height / BaseHeight;
         float resolutionRatio = (widthRatio + heightRatio) / 2;
@@ -72,6 +72,11 @@ public class PickupSpawner : MonoBehaviour
         {
             SpawnPickup();
             count++;
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            PrintoutEachElementArrayForTest();
         }
 
     }
@@ -111,10 +116,10 @@ public class PickupSpawner : MonoBehaviour
             pickup.GetComponent<Toy>().battlepower = (pickup.GetComponent<Toy>().HP 
                 + pickup.GetComponent<Toy>().Attack + pickup.GetComponent<Toy>().Defense + pickup.GetComponent<Toy>().Intellgence);
 
-
-            ToySpawnedArray.Add(pickup);
-            Debug.Log(pickup.GetComponent<Toy>().battlepower);
-            Debug.Log("BattlePower of Toy is" + ToySpawnedArray.items[0].GetComponent<Toy>().HP);
+            //adds the item to the Dynamic Arry
+            ToySpawnedArray.Add(pickup.GetComponent<Toy>());
+            //Debug.Log(pickup.GetComponent<Toy>().battlepower);
+            //Debug.Log("BattlePower of Toy is" + ToySpawnedArray.items[0].GetComponent<Toy>().HP);
 
 
         }
@@ -128,7 +133,13 @@ public class PickupSpawner : MonoBehaviour
         max.y = location.y + pickupColliderRadius;
     }
 
-
+    public void PrintoutEachElementArrayForTest()
+    {
+        foreach (Toy item in ToySpawnedArray.items)
+        {
+            Debug.Log("The battlepower of the item is" + item.BattlePower);
+        }
+    }
 
 
 }
