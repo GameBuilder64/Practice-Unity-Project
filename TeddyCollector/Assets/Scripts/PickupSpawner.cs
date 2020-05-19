@@ -74,9 +74,6 @@ public class PickupSpawner : MonoBehaviour
             count++;
         }
 
-        Debug.Log(ToySpawnedArray);
-        Debug.Log("BattlePower of Toy is" + ToySpawnedArray.items[0].GetComponent<Toy>().HP);
-
     }
 
     void SpawnPickup()
@@ -105,8 +102,20 @@ public class PickupSpawner : MonoBehaviour
         {
             GameObject pickup = Instantiate<GameObject>(prefabPickup,
                                     location, Quaternion.identity);
-            
+
+            pickup.GetComponent<Toy>().HP = UnityEngine.Random.Range(1, 10);
+            pickup.GetComponent<Toy>().Attack = UnityEngine.Random.Range(1, 10);
+            pickup.GetComponent<Toy>().Defense = UnityEngine.Random.Range(1, 10);
+            pickup.GetComponent<Toy>().Intellgence = UnityEngine.Random.Range(1, 10);
+
+            pickup.GetComponent<Toy>().battlepower = (pickup.GetComponent<Toy>().HP 
+                + pickup.GetComponent<Toy>().Attack + pickup.GetComponent<Toy>().Defense + pickup.GetComponent<Toy>().Intellgence);
+
+
             ToySpawnedArray.Add(pickup);
+            Debug.Log(pickup.GetComponent<Toy>().battlepower);
+            Debug.Log("BattlePower of Toy is" + ToySpawnedArray.items[0].GetComponent<Toy>().HP);
+
 
         }
     }
