@@ -16,7 +16,7 @@ public class Collector : MonoBehaviour
     //SortedList<Target> targets = new SortedList<Target>();
     public Target targetPickup = null;
 
-    public GameObject TargetObject;
+    public GameObject TargetObject = null;
 
     const float BaseImpulseForceMagnitude = 2.0f;
     const float ImpulseForceIncrement = 0.3f;
@@ -60,6 +60,7 @@ public class Collector : MonoBehaviour
             Destroy(collision.gameObject);
             rb2d.velocity = Vector3.zero;
 
+            TargetObject = null;
 
         }
     }

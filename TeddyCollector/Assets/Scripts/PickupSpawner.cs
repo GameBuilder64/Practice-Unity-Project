@@ -84,7 +84,23 @@ public class PickupSpawner : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            TheCollectorObject.GetComponent<Collector>().SetTarget(ToySpawnedArray.items[0].ThisGameObject);
+            //This was the only way to move towards the object for now, but Need better way 
+            //TheCollectorObject.GetComponent<Collector>().SetTarget(ToySpawnedArray.items[0].ThisGameObject);
+
+            if (TheCollectorObject.GetComponent<Collector>().TargetObject = null)
+            {
+                Debug.Log("TargetObject is null");
+                foreach (Toy item in ToySpawnedArray.items)
+                {
+                    Debug.Log("Got the first item");
+                    TheCollectorObject.GetComponent<Collector>().SetTarget(item.ThisGameObject);
+                    
+                    if(TheCollectorObject.GetComponent<Collector>().TargetObject = null)
+                    {
+                        break;
+                    }
+                }
+            }
         }
 
 
