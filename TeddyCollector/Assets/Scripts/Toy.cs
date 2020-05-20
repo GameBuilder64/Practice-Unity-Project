@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
     public class Toy : MonoBehaviour, IComparable 
 {
+        public GameObject ThisGameObject;
+
         #region Fields
         [SerializeField]
         public int HP;

@@ -213,10 +213,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c571cd798aaf5fa4185f467b83bba372, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ThisGameObject: {fileID: 0}
   HP: 0
   Attack: 0
   Defense: 0
   Intellgence: 0
+  battlepower: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabPickup: {fileID: 1533956241051526652, guid: 567f47512b67fcf4bbd2e4c7132c01e0,
     type: 3}
+  TheCollectorObject: {fileID: 574759596}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -411,6 +414,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0455cea72ce748c4fbfdb2de3bda5395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Pickupspawn: {fileID: 519420030}
+  targetPickup: {fileID: 0}
+  TargetObject: {fileID: 0}
 --- !u!50 &574759600
 Rigidbody2D:
   serializedVersion: 4

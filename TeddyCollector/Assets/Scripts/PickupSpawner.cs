@@ -16,6 +16,9 @@ public class PickupSpawner : MonoBehaviour
     [SerializeField]
     GameObject prefabPickup;
 
+
+    public GameObject TheCollectorObject;
+
     private int count = 0;
 
     Vector3 location = Vector3.zero;
@@ -74,10 +77,16 @@ public class PickupSpawner : MonoBehaviour
             count++;
         }
 
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             PrintoutEachElementArrayForTest();
         }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            TheCollectorObject.GetComponent<Collector>().SetTarget(ToySpawnedArray.items[0].ThisGameObject);
+        }
+
 
     }
 
@@ -115,6 +124,8 @@ public class PickupSpawner : MonoBehaviour
 
             pickup.GetComponent<Toy>().battlepower = (pickup.GetComponent<Toy>().HP 
                 + pickup.GetComponent<Toy>().Attack + pickup.GetComponent<Toy>().Defense + pickup.GetComponent<Toy>().Intellgence);
+
+            pickup.GetComponent<Toy>().ThisGameObject = pickup;
 
             //adds the item to the Dynamic Arry
             ToySpawnedArray.Add(pickup.GetComponent<Toy>());

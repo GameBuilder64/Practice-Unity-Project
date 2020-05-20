@@ -44,14 +44,65 @@ namespace OrderedArray
 
         }
 
+        // Remove item from array
         public override bool Remove(T item)
         {
-            throw new NotImplementedException();
+            // check for given item in array
+            int itemLocation = IndexOf(item);
+            if (itemLocation == -1)
+            {
+                return false;
+            }
+            else
+            {
+                // shift all the elements above the removed one down and change count
+                ShiftDown(itemLocation + 1);
+                count--;
+                return true;
+            }
         }
 
         public override int IndexOf(T item)
         {
-            throw new NotImplementedException();
+            int lowerBound = 0;
+            int upperBound = count - 1;
+            int location = -1;
+
+            // second part of Boolean expression added from defect discussed in reading
+            // loop until found value or exhausted array
+            while ((location == -1) &&
+                (lowerBound <= upperBound))
+            {
+                // find the middle
+                int middleLocation = lowerBound + (upperBound - lowerBound) / 2;
+                T middleValue = items[middleLocation];
+
+                // check for match
+                if (middleValue.CompareTo(item) == 0)
+                {
+                    location = middleLocation;
+                }
+                else
+                {
+                    // split data set to search appropriate side
+                    if (middleValue.CompareTo(item) > 0)
+                    {
+                        upperBound = middleLocation - 1;
+                    }
+                    else
+                    {
+                        lowerBound = middleLocation + 1;
+                    }
+
+                    // if statement no longer necessary when second part of while loop Boolean expression included
+                    // check to see if the array is exhausted
+                    //if (lowerBound > upperBound)
+                    //{
+                    //    break;
+                    //}
+                }
+            }
+            return location;
         }
 
         /// Shifts all the array elements from the given index to the end of the array up one space
