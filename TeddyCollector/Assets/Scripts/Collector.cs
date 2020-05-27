@@ -57,7 +57,11 @@ public class Collector : MonoBehaviour
             
             CollectorBin.Add(collision.gameObject.GetComponent<Toy>());
             Pickupspawn.ToySpawnedArray.Remove(collision.gameObject.GetComponent<Toy>());
+
+            Pickupspawn.ToySpawnedArray.Remove(collision.gameObject.GetComponent<Toy>());
+
             Destroy(collision.gameObject);
+
             rb2d.velocity = Vector3.zero;
 
             TargetObject = null;
